@@ -204,8 +204,8 @@ def main(args):
         lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer,gamma=0.95)
     else:
         raise ValueError('Lr scheduler type not supportted ')
-    dataset_train = build_dataset('train', args)
-    dataset_val = build_dataset('val', args)
+    dataset_train = build_dataset('trainval', args)
+    dataset_val = build_dataset('test', args)
 
     print('trainset:', len(dataset_train), 'validationset:', len(dataset_val))
 

@@ -13,8 +13,8 @@ from typing import Dict, List
 from utils.misc import NestedTensor, is_main_process
 # from .position_encoding import build_position_encoding
 
-from pytorch_pretrained_bert.modeling import BertModel
-from  transformers import  BertModel,BertTokenizer
+# from pytorch_pretrained_bert.modeling import BertModel
+from  transformers import  BertModel
 
 class BERT(nn.Module):
     def __init__(self, name: str, train_bert: bool, hidden_dim: int, max_len: int, enc_num):
@@ -24,10 +24,9 @@ class BERT(nn.Module):
         else:
             self.num_channels = 1024
         self.enc_num = enc_num
-        #self.bert = BertModel.from_pretrained(name)
 
-        self.bert = BertModel.from_pretrained('../bert/')
-        print(name)
+        self.bert = BertModel.from_pretrained(name)
+
         if not train_bert:
             for parameter in self.bert.parameters():
                 parameter.requires_grad_(False)

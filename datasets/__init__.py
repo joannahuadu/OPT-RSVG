@@ -4,7 +4,7 @@ import torchvision
 from torchvision.transforms import Compose, ToTensor, Normalize
 
 import datasets.transforms as T
-from .data_loader import LPVADataset
+from .data_loader import LPVADataset, TransVGDatasetRS
 from .data_loader_new import *
 
 def make_transforms(args, image_set, is_onestage=False):
@@ -25,9 +25,18 @@ def make_transforms(args, image_set, is_onestage=False):
 
 
 def build_dataset(split, args):
-    return LPVADataset(data_root=args.data_root,
-                        split_root=args.split_root,
-                        dataset=args.dataset,
-                        split=split,
-                        transform=make_transforms(args, split),
-                        max_query_len=args.max_query_len)
+    if args.dataset == 'dior_rsvg': 
+        return TransVGDatasetRS(data_root=args.data_root,
+                    split_root=args.split_root,
+                    dataset=args.dataset,
+                    split=split,
+                    transform=make_transforms(args, split),
+                    max_query_len=args.max_query_len)
+    else:
+        return LPVADataset(data_root=args.data_root,
+                            split_root=args.split_root,
+                            dataset=args.dataset,
+                            split=split,
+                            transform=make_transforms(args, split),
+                            max_query_len=args.max_query_len)
+

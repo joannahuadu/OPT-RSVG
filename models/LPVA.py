@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from pytorch_pretrained_bert.modeling import BertModel
+# from pytorch_pretrained_bert.modeling import BertModel
 from torch.nn.parameter import Parameter
 from . import transformer
 from .visual_model.detr import build_detr
