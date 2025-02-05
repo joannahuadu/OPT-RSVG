@@ -18,7 +18,7 @@ from torch import Tensor
 
 # needed due to empty tensor bug in pytorch and torchvision 0.5
 import torchvision
-if float(torchvision.__version__[:3]) < 0.7:
+if float(torchvision.__version__[2:4]) < 7:
     from torchvision.ops import _new_empty_tensor
     from torchvision.ops.misc import _output_size
 
@@ -305,7 +305,7 @@ def collate_fn(raw_batch):
     lists = []
     bbox = torch.tensor(raw_batch[4])
     label = raw_batch[5]
-    batch = [img_data, text_data,bbox,label]
+    batch = [img_data, text_data, bbox, label]
     return tuple(batch)
 
 
@@ -491,7 +491,7 @@ def interpolate(input, size=None, scale_factor=None, mode="nearest", align_corne
     This will eventually be supported natively by PyTorch, and this
     class can go away.
     """
-    if float(torchvision.__version__[:3]) < 0.7:
+    if float(torchvision.__version__[2:4]) < 7:
         if input.numel() > 0:
             return torch.nn.functional.interpolate(
                 input, size, scale_factor, mode, align_corners

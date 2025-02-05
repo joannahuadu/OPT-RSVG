@@ -132,7 +132,7 @@ class FocalLoss(nn.Module):
         return focal_loss
 
 def trans_vg_loss(batch_pred, batch_target):
-    """Compute the losses related to the bounding boxes,
+    """Compute the losses related to the bounding boxes, 
        including the L1 regression loss and the GIoU loss
     """
     batch_size = batch_pred.shape[0]
